@@ -1,7 +1,10 @@
 #ifndef UTILITY_H   
 #define UTILITY_H
 #include <bits/stdc++.h>
+#include <boost/functional/hash.hpp>
 
+
+// Trees Classes
 class Segment_Tree
 {
 public:
@@ -63,6 +66,22 @@ public:
     bool check_prefix(const std::string &prefix);
     std::vector<std::string> find_all_with_prefix(const std::string &prefix);
     std::vector<std::string> find_all_words();
+};
+
+// Bloom Filter Class
+class BloomFilter {
+private:
+    int m, k, n; 
+    double P;
+    std::vector<bool> bit_array;
+    uint32_t hash(const std::string &word, int seed);
+public:
+    BloomFilter();
+    BloomFilter(int m);
+    BloomFilter(int n, int m);
+    BloomFilter(int n, double p);
+    bool find(const std::string &word);
+    void insert(const std::string &word);
 };
 
 // Sum Tree Functions
