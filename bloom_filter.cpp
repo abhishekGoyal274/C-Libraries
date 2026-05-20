@@ -29,14 +29,13 @@ BloomFilter::BloomFilter(int n, double P){
 
 // Helper Functions
 uint32_t BloomFilter::hash(const std::string &word, int seed){
-    boost::hash<std::string> string_hash;
-    return (string_hash(word) + seed);
+    return std::hash<std::string>{}(word + std::to_string(seed));
 }
 
 // Main Functions
 bool BloomFilter::find(const std::string &word){
-    unit32_t hash1 = this->hash(word, 17);
-    unit32_t hash2 = this->hash(word, 31);
+    uint32_t hash1 = this->hash(word, 17);
+    uint32_t hash2 = this->hash(word, 31);
     for(int i=0; i<k; i++){
         uint32_t idx = (hash1 + i*hash2) % this->m;
         if(!bit_array[idx]) return false;
