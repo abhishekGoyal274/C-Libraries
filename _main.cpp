@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "./_utility.h"
+#include "./dynamic_array.h"
 
 int main()
 {

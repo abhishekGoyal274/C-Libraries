@@ -19,11 +19,12 @@ BloomFilter::BloomFilter(int n, int m){
 BloomFilter::BloomFilter(int n, double P){
     if(P <= 0 || P >= 1){
         bit_array = std::vector<bool>(265,0);
+        this->m = 265; this->n = -1; this->P = -1; this->k = 7;
         return;
     } 
     this->n = n; this->P = P; 
     this->m =  std::abs((n*std::log(P)) / (std::pow(std::log(2), 2)));
-    this->k = std::ceil(m*std::log(2)/n);
+    this->k = std::ceil((this->m)*std::log(2)/n);
     bit_array = std::vector<bool>(this->m,0);
 }
 
